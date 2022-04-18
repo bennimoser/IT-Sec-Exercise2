@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {MenuItem} from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,30 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'DemoApplication';
+
+  public title = "Demo-Applikation"
+
+  public menubaritems: MenuItem[] = new Array<MenuItem>();
+
+
+  public ngOnInit(): void {
+    this.LoadItems();
+  }
+
+  public LoadItems(){
+    const items = [
+        {
+          label : "Bestellung",
+          icon : 'pi pi-shopping-cart',
+          routerLink : '/order'
+        },
+        {
+          label : "Profil",
+          icon : 'pi pi-user',
+          routerLink : '/profile'
+        }
+    ];
+
+    this.menubaritems = items;
+  }
 }
