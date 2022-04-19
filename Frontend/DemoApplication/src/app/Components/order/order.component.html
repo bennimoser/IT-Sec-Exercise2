@@ -1,1 +1,73 @@
-<p>order works!</p>
+<p-card header="{{ header }}">
+  <div class="row">
+    <div class="col">
+      <label class="fw-bold">Bestellnummer</label>
+    </div>
+    <div class="col">
+      <label>45817239</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label class="fw-bold">Bestelldatum</label>
+    </div>
+    <div class="col">
+      <label>{{ pipe.transform(date, "dd.MM.YYYY HH:mm") }}</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label class="fw-bold">Preis</label>
+    </div>
+    <div class="col">
+      <label>21,45€</label>
+    </div>
+  </div>
+  <hr />
+  <h4>Bestellte Produkte:</h4>
+  <br />
+  <table class="table">
+    <thead>
+      <th scope="col-2" class="text-center">Artikelnummer</th>
+      <th scope="col-5" class="text-center">Produktname</th>
+      <th scope="col" class="text-center">Stückzahl</th>
+      <th scope="col" class="text-center">Preis</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orderedArticles">
+        <td class="col-2 text-center">{{ order.articlenumber }}</td>
+        <td class="col-5 text-center">
+          {{ order.productname
+          }}<span *ngIf="order.onsale" class="badge rounded-pill bg-danger"
+            >Sale</span
+          >
+        </td>
+        <td class="col text-center">{{ order.amount }} Stk.</td>
+        <td class="col text-center">{{ order.price }}€</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col-7"></div>
+    <div class="col text-center">{{ overallamount }} Stk.</div>
+    <div class="col text-center">{{ overallprice }}€</div>
+  </div>
+  <hr />
+  <h4>Bezahlung:</h4>
+  <div class="row">
+    <label class="col fw-bold">Kreditkarte:</label>
+    <label class="col">VISA</label>
+  </div>
+  <div class="row">
+    <label class="col fw-bold">Kreditkartennummer:</label>
+    <label class="col">6485 3648 2643 2834</label>
+  </div>
+  <div class="row">
+    <label class="col fw-bold">Gültig bis:</label>
+    <label class="col">12/23</label>
+  </div>
+  <div class="row">
+    <label class="col fw-bold">CVV:</label>
+    <label class="col">327</label>
+  </div>
+</p-card>

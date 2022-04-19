@@ -1,4 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { OrderedArticle } from 'src/app/models/OrderedArticle';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.sass']
 })
 export class ProfileComponent implements OnInit {
-
-  constructor() { }
-
   ngOnInit(): void {
+    throw new Error('Method not implemented.');
   }
+
 
 }

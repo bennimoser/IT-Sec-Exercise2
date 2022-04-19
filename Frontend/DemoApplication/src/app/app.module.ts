@@ -7,6 +7,8 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { OrderComponent } from './Components/order/order.component';
 import { ApiService } from './Services/ApiService/api-service.service';
 import { HomeComponent } from './Components/home/home.component';
+import { CardModule } from 'primeng/card'
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,10 @@ import { HomeComponent } from './Components/home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MenubarModule
+    MenubarModule,
+    CardModule
   ],
-  providers: [ApiService],
+  providers: [ApiService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
