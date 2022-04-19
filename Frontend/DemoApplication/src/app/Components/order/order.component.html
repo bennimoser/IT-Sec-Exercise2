@@ -1,4 +1,25 @@
-<p-card header="{{ header }}">
+<form
+  class="row text-center"
+  style="margin-top: 20px"
+  (ngSubmit)="getOrder()"
+  ngValidate
+  [formGroup]="ordernumberForm"
+>
+  <div class="col">Bestellnummer</div>
+  <div class="col">
+    <input
+      type="text"
+      formControlName="ordernumber"
+      pInputText
+      placeholder="Bestellnummer"
+    />
+  </div>
+  <div class="col">
+    <button type="submit" class="btn btn-success">Abfragen</button>
+  </div>
+</form>
+<hr />
+<p-card *ngIf="dataloaded" header="{{ header }}">
   <div class="row">
     <div class="col">
       <label class="fw-bold">Bestellnummer</label>

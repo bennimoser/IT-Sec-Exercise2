@@ -1,6 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OrderedArticle } from 'src/app/models/OrderedArticle';
+import { ApiService } from 'src/app/Services/ApiService/api-service.service';
 
 @Component({
   selector: 'app-order',
@@ -18,9 +20,16 @@ export class OrderComponent implements OnInit {
 
   public orderedArticles! : OrderedArticle[];
 
-  constructor(public pipe: DatePipe) {
+  public dataloaded! : boolean;
+
+  public ordernumberForm = new FormGroup({
+    ordernumber: new FormControl('',{updateOn:'blur', validators: Validators.required})
+  });
+
+  constructor(public pipe: DatePipe, private apiservice: ApiService) {
     this.overallprice = 0;
     this.overallamount = 0;
+    this.dataloaded = false;
    }
 
   ngOnInit(): void {
@@ -60,6 +69,13 @@ export class OrderComponent implements OnInit {
     });
 
     this.orderedArticles = items;
+  }
+
+  async getOrder(){
+    let ordernumber = this.ordernumberForm.controls['ordernumber'].value;
+    this.header = this.header + "#"+ ordernumber;
+    var response = this.apiservice.getOrder("getOrder/" + ordernumber);
+    this.dataloaded = true;
   }
 
 }
