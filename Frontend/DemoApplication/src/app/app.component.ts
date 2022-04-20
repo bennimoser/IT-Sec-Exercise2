@@ -23,11 +23,6 @@ export class AppComponent {
           label : "Bestellung",
           icon : 'pi pi-shopping-cart',
           routerLink : '/order'
-        },
-        {
-          label : "Profil",
-          icon : 'pi pi-user',
-          routerLink : '/profile'
         }
     ];
 
