@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Order } from 'src/app/models/Order';
 import { OrderedArticle } from 'src/app/models/OrderedArticle';
 import { ApiService } from 'src/app/Services/ApiService/api-service.service';
 
@@ -71,10 +72,17 @@ export class OrderComponent implements OnInit {
     this.orderedArticles = items;
   }
 
+  public order!:any;
+
   async getOrder(){
     let ordernumber = this.ordernumberForm.controls['ordernumber'].value;
     this.header = this.header + "#"+ ordernumber;
-    var response = this.apiservice.getOrder("getOrder/" + ordernumber);
+    var response = await this.apiservice.getOrder("getOrder?OrderId=" + ordernumber);
+    console.log(response);
+    if(response != null)
+    {
+      this.order = response[0];
+    }
     this.dataloaded = true;
   }
 

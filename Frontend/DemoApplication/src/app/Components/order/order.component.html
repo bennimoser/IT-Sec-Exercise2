@@ -25,7 +25,7 @@
       <label class="fw-bold">Bestellnummer</label>
     </div>
     <div class="col">
-      <label>45817239</label>
+      <label>{{ order.id }}</label>
     </div>
   </div>
   <div class="row">
@@ -81,14 +81,14 @@
   </div>
   <div class="row">
     <label class="col fw-bold">Kreditkartennummer:</label>
-    <label class="col">6485 3648 2643 2834</label>
+    <label class="col">{{ order.creditcardnumber }}</label>
   </div>
   <div class="row">
     <label class="col fw-bold">Gültig bis:</label>
-    <label class="col">12/23</label>
+    <label class="col">{{ order.till }}</label>
   </div>
   <div class="row">
     <label class="col fw-bold">CVV:</label>
-    <label class="col">327</label>
+    <label class="col">{{ order.cvv }}</label>
   </div>
 </p-card>

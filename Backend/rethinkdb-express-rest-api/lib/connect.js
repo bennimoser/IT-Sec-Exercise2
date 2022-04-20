@@ -1,7 +1,5 @@
 const r = require("rethinkdb");
-// TODO Marcus!!
-var databaseName = "DonerTagebuch";
-var userTable = "Users";
+var databaseName = "TestDB";
 var orderTable = "Orders";
 
 module.exports.connect = function (req, res, next) {
@@ -31,9 +29,7 @@ module.exports.connect = function (req, res, next) {
 //Init Method
 function init(connection) {
   createDatabase(connection, () => {
-    createUserTable(connection, () => {
-      createOrderTable(connection, () => {});
-    });
+    createOrderTable(connection, () => {});
   });
 }
 
@@ -43,23 +39,6 @@ function createDatabase(connection, callback) {
     .contains(databaseName)
     .do(function (containsDb) {
       return r.branch(containsDb, { created: 0 }, r.dbCreate(databaseName));
-    })
-    .run(connection, function (error) {
-      callback(error);
-    });
-}
-
-//Method to create User Table
-function createUserTable(connection, callback) {
-  r.db(databaseName)
-    .tableList()
-    .contains(userTable)
-    .do(function (containsTable) {
-      return r.branch(
-        containsTable,
-        { created: 0 },
-        r.db(databaseName).tableCreate(userTable)
-      );
     })
     .run(connection, function (error) {
       callback(error);
